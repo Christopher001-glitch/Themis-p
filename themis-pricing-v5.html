@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Themis — Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --navy: #0a1628; --gold: #d4af37; --gold2: #f5d97a; --white: #ffffff; --gray: rgba(255,255,255,0.5); --border: rgba(212,175,55,0.2); --green: #4ade80; --green-bg: rgba(74,222,128,0.08); }
+body { background: var(--navy); font-family: 'DM Sans', sans-serif; color: var(--white); min-height: 100vh; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse at 20% 20%, rgba(212,175,55,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(30,80,160,0.08) 0%, transparent 60%); pointer-events: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+header { padding: 40px 0 20px; text-align: center; }
+.logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+.logo span { color: var(--gold); }
+.hero { text-align: center; padding: 50px 0 40px; }
+.badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.1); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 54px); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+h1 span { color: var(--gold); }
+.hero-sub { font-size: 15px; color: var(--gray); max-width: 560px; margin: 0 auto 30px; line-height: 1.8; }
+.coming-soon-banner { background: rgba(212,175,55,0.08); border: 1px solid var(--border); border-radius: 14px; padding: 14px 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 12px; }
+.coming-soon-banner span { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.coming-soon-banner strong { color: var(--gold); }
+.position-box { background: rgba(212,175,55,0.06); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 30px; text-align: center; }
+.position-box p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.85); font-style: italic; }
+.position-box p strong { color: var(--gold); font-style: normal; }
+.guarantee { background: var(--green-bg); border: 1px solid rgba(74,222,128,0.2); border-radius: 16px; padding: 20px 24px; margin-bottom: 50px; display: flex; align-items: flex-start; gap: 14px; }
+.guarantee-icon { font-size: 28px; flex-shrink: 0; }
+.guarantee-title { font-size: 15px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
+.guarantee p { font-size: 12px; color: var(--gray); line-height: 1.6; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; margin-bottom: 8px; }
+.section-sub { font-size: 13px; color: var(--gray); margin-bottom: 30px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 60px; }
+.stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px 16px; text-align: center; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: var(--gold); display: block; margin-bottom: 6px; }
+.stat-label { font-size: 11px; color: var(--gray); line-height: 1.5; }
+.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
+.plan { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px 28px; position: relative; transition: all 0.3s; }
+.plan:hover { transform: translateY(-4px); border-color: rgba(212,175,55,0.3); }
+.plan.featured { background: rgba(212,175,55,0.06); border-color: var(--gold); transform: translateY(-8px); }
+.popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--gold), var(--gold2)); color: var(--navy); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+.plan-icon { width: 44px; height: 44px; background: rgba(212,175,55,0.1); border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+.plan-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.plan-position { font-size: 11px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.plan-desc { font-size: 12px; color: var(--gray); margin-bottom: 14px; line-height: 1.6; }
+.roi-proof { background: var(--green-bg); border: 1px solid rgba(74,222,128,0.15); border-radius: 10px; padding: 10px 14px; margin-bottom: 18px; font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+.roi-proof strong { color: var(--green); }
+.plan-price { margin-bottom: 20px; }
+.setup-label { font-size: 11px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.setup { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: var(--gold); }
+.monthly { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+.monthly strong { color: var(--white); font-size: 15px; }
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent); margin-bottom: 20px; }
+.features-list { list-style: none; margin-bottom: 28px; }
+.features-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 10px; line-height: 1.4; }
+.features-list li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.features-list li.no::before { content: '✕'; color: rgba(255,255,255,0.2); }
+.features-list li.no { color: rgba(255,255,255,0.3); }
+.features-list li.star::before { content: '🛡️'; font-size: 11px; }
+.features-list li.star { color: var(--green); }
+.features-list li.new::before { content: '🆕'; font-size: 11px; }
+.features-list li.new { color: var(--gold); }
+.btn { width: 100%; padding: 14px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; display: block; text-align: center; transition: all 0.3s; }
+.btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); }
+.btn-gold:hover { box-shadow: 0 8px 25px rgba(212,175,55,0.4); transform: translateY(-2px); }
+.btn-outline { background: transparent; border: 1px solid rgba(212,175,55,0.4); color: var(--gold); }
+.btn-outline:hover { background: rgba(212,175,55,0.08); }
+.sales-section { margin-bottom: 60px; }
+.sales-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.sales-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px 20px; }
+.sales-q { font-size: 11px; color: var(--gray); margin-bottom: 10px; text-decoration: line-through; font-style: italic; }
+.sales-a { font-size: 14px; color: var(--white); line-height: 1.6; font-weight: 500; }
+.sales-a em { color: var(--gold); font-style: normal; }
+.addons { padding: 0 0 60px; }
+.addons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.addon { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px 20px; transition: all 0.3s; }
+.addon:hover { border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.04); transform: translateY(-3px); }
+.addon-cat { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; opacity: 0.7; }
+.addon-icon { font-size: 22px; margin-bottom: 8px; }
+.addon-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.addon-outcome { font-size: 11px; color: var(--green); margin-bottom: 8px; font-weight: 500; }
+.addon-desc { font-size: 11px; color: var(--gray); line-height: 1.5; margin-bottom: 12px; }
+.addon-price { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--gold); }
+.addon-price span { font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--gray); font-weight: 400; }
+.cta-section { background: rgba(212,175,55,0.06); border: 1px solid var(--border); border-radius: 24px; padding: 50px 40px; text-align: center; margin-bottom: 60px; }
+.cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; margin-bottom: 12px; }
+.cta-section p { font-size: 14px; color: var(--gray); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+.btn-wa { background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; border-radius: 12px; padding: 16px 36px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(37,211,102,0.3); transition: all 0.3s; }
+.btn-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+footer { text-align: center; padding: 20px 0 40px; font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header><div class="logo">THE<span>M</span>IS</div></header>
+
+  <div class="hero">
+    <div class="badge">⚡ Connect • Automate • Grow</div>
+    <h1>More Customers.<br>Faster Replies.<br><span>More Money.</span></h1>
+    <p class="hero-sub">We help you capture and convert every customer that contacts your business — so you never lose money from missed calls, slow replies, or poor follow-up.</p>
+  </div>
+
+  <div class="coming-soon-banner">
+    <span>⚡</span>
+    <span><strong>Themis App is coming.</strong> Built-in appointment booking, customer management, AI responses and more — all in one place. No third-party tools needed. Currently in final development.</span>
+  </div>
+
+  <div class="position-box">
+    <p>Nobody pays for <strong>"automation."</strong> They pay for <strong>more customers, faster replies, and more money in their account.</strong> That is exactly what Themis delivers.</p>
+  </div>
+
+  <div class="guarantee">
+    <div class="guarantee-icon">🛡️</div>
+    <div>
+      <div class="guarantee-title">Performance Guarantee</div>
+      <p>If Themis does not recover a minimum of 10 missed leads in your first 30 days — your next month is completely free. No questions asked. No arguments.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-num">60s</span><span class="stat-label">Response to every missed call</span></div>
+    <div class="stat"><span class="stat-num">18-35</span><span class="stat-label">Extra leads recovered per month</span></div>
+    <div class="stat"><span class="stat-num">7x</span><span class="stat-label">Average ROI within 60 days</span></div>
+    <div class="stat"><span class="stat-num">₦0</span><span class="stat-label">Extra staff needed — fully automated</span></div>
+  </div>
+
+  <div class="section-title">Choose Your Package</div>
+  <div class="section-sub">One-time setup + monthly management</div>
+
+  <div class="plans-grid">
+
+    <div class="plan">
+      <div class="plan-icon">🌐</div>
+      <div class="plan-name">Starter</div>
+      <div class="plan-position">Start capturing customers properly</div>
+      <div class="plan-desc">For businesses tired of missing customers. Get online properly and start converting visitors into paying customers today.</div>
+      <div class="roi-proof">💡 Just <strong>2 new bookings per month</strong> through your website pays for this entire package.</div>
+      <div class="plan-price">
+        <div class="setup-label">Setup Fee</div>
+        <div class="setup">₦200,000</div>
+        <div class="monthly">Retainer: <strong>₦80,000/mo</strong></div>
+      </div>
+      <div class="divider"></div>
+      <ul class="features-list">
+        <li>Professional website that converts visitors</li>
+        <li>Mobile-optimized design</li>
+        <li>WhatsApp buttons for instant communication</li>
+        <li>Direct appointment booking — no third party tools</li>
+        <li>Basic WhatsApp auto reply</li>
+        <li>2 weeks setup support included</li>
+        <li class="no">Missed call auto SMS</li>
+        <li class="no">Email follow up sequence</li>
+        <li class="no">CRM and Revenue Dashboard</li>
+      </ul>
+      <a href="https://wa.me/2347016445848?text=Hi%20I'm%20interested%20in%20the%20Starter%20package" class="btn btn-outline">Get Started</a>
+    </div>
+
+    <div class="plan featured">
+      <div class="popular-badge">Most Popular</div>
+      <div class="plan-icon">⚡</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-position">Turn every interaction into revenue</div>
+      <div class="plan-desc">For businesses that want consistent sales. Every missed call becomes a lead. Every lead gets followed up. No customer slips through again.</div>
+      <div class="roi-proof">💡 Recovering just <strong>5 missed leads/month</strong> at ₦50,000 each = ₦250,000 recovered. Pays for itself 1.4x monthly.</div>
+      <div class="plan-price">
+        <div class="setup-label">Setup Fee</div>
+        <div class="setup">₦500,000</div>
+        <div class="monthly">Retainer: <strong>₦180,000/mo</strong></div>
+      </div>
+      <div class="divider"></div>
+      <ul class="features-list">
+        <li>Everything in Starter</li>
+        <li>Every missed call becomes a lead instantly</li>
+        <li>Automatic WhatsApp replies — no delays ever</li>
+        <li>Follow-up messages that bring customers back</li>
+        <li>Simple system to track all your customers</li>
+        <li>Dashboard showing how much money you're making</li>
+        <li>30 days setup support included</li>
+        <li class="star">Performance guarantee included</li>
+        <li class="no">AI powered responses</li>
+        <li class="no">Online shop</li>
+      </ul>
+      <a href="https://wa.me/2347016445848?text=Hi%20I'm%20interested%20in%20the%20Growth%20package" class="btn btn-gold">Get Started</a>
+    </div>
+
+    <div class="plan">
+      <div class="plan-icon">🚀</div>
+      <div class="plan-name">Scale</div>
+      <div class="plan-position">Run your business on autopilot</div>
+      <div class="plan-desc">For serious businesses that want automation and dominance. AI replies at 2am. Customers book while you sleep. Revenue tracked automatically.</div>
+      <div class="roi-proof">💡 <strong>15-30 leads recovered monthly</strong> = ₦750K-₦1.5M extra revenue. System pays for itself 3x every single month.</div>
+      <div class="plan-price">
+        <div class="setup-label">Setup Fee</div>
+        <div class="setup">₦850,000</div>
+        <div class="monthly">Retainer: <strong>₦280,000/mo</strong></div>
+      </div>
+      <div class="divider"></div>
+      <ul class="features-list">
+        <li>Everything in Growth</li>
+        <li>AI that replies customers — even at 2am</li>
+        <li>WhatsApp chatbot for structured conversations</li>
+        <li>Online store with order management</li>
+        <li>Advanced features for your specific niche</li>
+        <li>Monthly performance reports</li>
+        <li>Continuous system upgrades</li>
+        <li>Priority 24/7 support</li>
+        <li>30 days setup support included</li>
+        <li class="new">Themis App access when launched</li>
+        <li class="star">12 lead recovery guarantee</li>
+      </ul>
+      <a href="https://wa.me/2347016445848?text=Hi%20I'm%20interested%20in%20the%20Scale%20package" class="btn btn-outline">Get Started</a>
+    </div>
+
+  </div>
+
+  <div class="sales-section">
+    <div class="section-title">The Questions That Matter</div>
+    <div class="section-sub">Stop thinking about features. Think about what you are losing right now.</div>
+    <div class="sales-grid">
+      <div class="sales-card">
+        <div class="sales-q">Do you want an AI chatbot?</div>
+        <div class="sales-a">Do you want customers to get <em>instant replies</em> or wait until you are available?</div>
+      </div>
+      <div class="sales-card">
+        <div class="sales-q">We offer a follow-up system</div>
+        <div class="sales-a">How many customers said <em>"I'll get back to you"</em> and never came back?</div>
+      </div>
+      <div class="sales-card">
+        <div class="sales-q">We offer missed call automation</div>
+        <div class="sales-a">How much money did you lose <em>last month</em> from calls nobody picked up?</div>
+      </div>
+      <div class="sales-card">
+        <div class="sales-q">We build booking systems</div>
+        <div class="sales-a">How many customers gave up because <em>nobody answered</em> their call?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="addons">
+    <div class="section-title">Power-Ups</div>
+    <div class="section-sub">Add to any package — each one solves a specific business problem</div>
+    <div class="addons-grid">
+
+      <div class="addon">
+        <div class="addon-cat">Sales and Revenue</div>
+        <div class="addon-icon">🛍️</div>
+        <div class="addon-name">Online Shop</div>
+        <div class="addon-outcome">→ Sell products 24/7 without being present</div>
+        <div class="addon-desc">Full product catalogue with WhatsApp ordering and inventory management</div>
+        <div class="addon-price">₦100,000 <span>setup</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Sales and Revenue</div>
+        <div class="addon-icon">📧</div>
+        <div class="addon-name">Extended Follow-up</div>
+        <div class="addon-outcome">→ Remind customers automatically until they buy</div>
+        <div class="addon-desc">30-day email sequence — squeeze every possible booking from every single lead</div>
+        <div class="addon-price">₦30,000 <span>setup</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Speed and Automation</div>
+        <div class="addon-icon">🤖</div>
+        <div class="addon-name">AI Chatbot</div>
+        <div class="addon-outcome">→ Reply every customer instantly — even when offline</div>
+        <div class="addon-desc">Full WhatsApp AI that qualifies leads, answers FAQs and books appointments automatically</div>
+        <div class="addon-price">₦150,000 <span>setup</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Control and Tracking</div>
+        <div class="addon-icon">📊</div>
+        <div class="addon-name">Advanced CRM</div>
+        <div class="addon-outcome">→ Track every customer so no lead is ever lost</div>
+        <div class="addon-desc">Full pipeline tracking, lead scoring and automated status updates</div>
+        <div class="addon-price">₦40,000 <span>setup</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Control and Tracking</div>
+        <div class="addon-icon">📈</div>
+        <div class="addon-name">Monthly Report</div>
+        <div class="addon-outcome">→ See exactly how much money your system is generating</div>
+        <div class="addon-desc">Detailed PDF — every lead recovered, revenue generated and growth month over month</div>
+        <div class="addon-price">₦20,000 <span>/month</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Brand and Presence</div>
+        <div class="addon-icon">🌐</div>
+        <div class="addon-name">Custom Domain</div>
+        <div class="addon-outcome">→ Look like a serious business not a random seller</div>
+        <div class="addon-desc">Your own .com or .ng domain — builds instant trust and professionalism</div>
+        <div class="addon-price">₦20,000 <span>/year</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Brand and Presence</div>
+        <div class="addon-icon">📱</div>
+        <div class="addon-name">Social Media Setup</div>
+        <div class="addon-outcome">→ Turn your page into a customer-generating machine</div>
+        <div class="addon-desc">Instagram, Facebook and TikTok fully branded and ready to attract new customers</div>
+        <div class="addon-price">₦35,000 <span>one time</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Speed and Automation</div>
+        <div class="addon-icon">⭐</div>
+        <div class="addon-name">Review Automation</div>
+        <div class="addon-outcome">→ Build your reputation on autopilot</div>
+        <div class="addon-desc">Automatically ask happy customers for Google reviews — more stars, more trust, more customers</div>
+        <div class="addon-price">₦40,000 <span>setup</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Operations and Management</div>
+        <div class="addon-icon">🖥️</div>
+        <div class="addon-name">Admin Dashboard</div>
+        <div class="addon-outcome">→ Run your entire business from one panel</div>
+        <div class="addon-desc">Full booking management — view, confirm, reschedule and cancel appointments. Filter by date, service or status. Access patient contact info and manage your services list</div>
+        <div class="addon-price">₦80,000 <span>setup</span></div>
+      </div>
+
+      <div class="addon">
+        <div class="addon-cat">Operations and Management</div>
+        <div class="addon-icon">📩</div>
+        <div class="addon-name">Email Notifications</div>
+        <div class="addon-outcome">→ Keep everyone informed automatically</div>
+        <div class="addon-desc">Patient gets booking confirmation instantly. Staff get alerted when new booking arrives. Automatic 24hr reminder sent before every appointment — zero manual follow up</div>
+        <div class="addon-price">₦35,000 <span>setup</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Stop Losing Customers.<br><span style="color:var(--gold)">See It Working Live.</span></h2>
+    <p>We will show you the entire Themis system working in real time — 10 minutes, completely free, no commitment and no pressure.</p>
+    <a href="https://wa.me/2347016445848?text=Hi%20I'd%20like%20a%20free%20Themis%20demo" class="btn-wa">💬 Get Your Free Demo Now</a>
+  </div>
+
+  <footer>THEMIS © 2026 — CONNECT • AUTOMATE • GROW</footer>
+</div>
+</body>
+</html>
